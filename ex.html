@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <body>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Explore the World | City Explorer</title>
+    <div class="world-map" id="world-map">
+        <img src="assets/world-map.jpg" alt="World Map" usemap="#world-map">
+        <map name="world-map">
+          <area shape="rect" coords="100,50,150,100" href="details.html?country=Italy&city=Rome" alt="Italy">
+          <area shape="rect" coords="200,100,250,150" href="details.html?country=France&city=Paris" alt="France">
+          <!-- Add other areas for different countries/cities -->
+        </map>
+      </div>
+      <h1 id="city-name">Loading city...</h1>
+<img id="city-image" src="loading.jpg" alt="City Image">
+<p id="city-description">Loading description...</p>
+<h2>Weather Information</h2>
+<p id="weather-info">Loading weather...</p>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+  // Function to get query parameters from the URL
+  function getQueryParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return {
+      country: urlParams.get('country'),
+      city: urlParams.get('city')
+    };
+  }
+
+  // Get country and city
+  const { country, city } = getQueryParams();
+
+  // Update the page title and city name
+  document.title = `${city} | City Explorer`;
+  document.getElementById('city-name').textContent = city;
+  
+  // Fetch weather and other details
+  fetchCityInfo(country, city);
+});
+function fetchCityInfo(country, city) {
+  const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeatherMap API Key
+  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+  // Fetch weather data
+  fetch(weatherUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.cod === 200) {
+        const { main, weather } = data;
+        const temp = main.temp;
+        const description = weather[0].description;
+        const humidity = main.humidity;
+
+        // Update the weather info section
+        const weatherDetails = `
+          <strong>Temperature:</strong> ${temp}°C<br>
+          <strong>Condition:</strong> ${description.charAt(0).toUpperCase() + description.slice(1)}<br>
+          <strong>Humidity:</strong> ${humidity}%<br>
+        `;
+        document.getElementById('weather-info').innerHTML = weatherDetails;
+      } else {
+        document.getElementById('weather-info').innerHTML = 'Weather information not available.';
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching weather data:', error);
+      document.getElementById('weather-info').innerHTML = 'Failed to retrieve weather information.';
+    });
+
+  // Fetch other destination details (images, descriptions, etc.)
+  fetchDestinationDetails(country, city);
+}
+function fetchDestinationDetails(country, city) {
+  const destinations = {
+    Italy: {
+      Rome: {
+        image: 'assets/rome.jpg',
+        description: 'Rome is the capital of Italy, famous for its ancient monuments and the Vatican.'
+      },
+      Florence: {
+        image: 'assets/florence.jpg',
+        description: 'Florence is known for its art, museums, and architecture.'
+      }
+    },
+    France: {
+      Paris: {
+        image: 'assets/paris.jpg',
+        description: 'Paris, the City of Light, is known for its art, culture, and history.'
+      }
+    }
+  };
+
+  const countryData = destinations[country];
+  if (countryData) {
+    const cityData = countryData[city];
+    if (cityData) {
+      document.getElementById('city-image').src = cityData.image;
+      document.getElementById('city-description').textContent = cityData.description;
+    }
+  }
+}
+
+</script>
+      
+  </body>
+</html>

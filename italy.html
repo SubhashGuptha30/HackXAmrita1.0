@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles1.css" />
+  <title>Explore the World | City Explorer</title>
+</head>
+
+<body>
+  <header class="header" id="home">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo nav__logo">
+          <a href="#">City Explorer</a>
+        </div>
+        <ul class="nav__links" id="nav-links">
+          <li><a href="#about">Destinations</a></li>
+          <li><a href="#equipment">Travel Essentials</a></li>
+          <li><a href="#blog">Travel Blog</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+
+        </ul>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+        <div class="nav__action__btn">
+          <button class="btn">
+            <span><i class="ri-user-line"></i></span> Account
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="section__container header__container">
+      <div class="header__content">
+        <h3 class="section__subheader">YOUR ADVENTURE AWAITS</h3>
+        <h1 class="section__header" style="color: peru;">
+          Italy, Paris
+        </h1>
+        <div class="scroll__btn">
+          <a href="#about">
+            Scroll down
+            <span><i class="ri-arrow-down-line"></i></span>
+          </a>
+        </div>
+      </div>
+      <div class="header__socials">
+        <span>Follow us</span>
+        <a href="#"><i class="ri-instagram-line"></i></a>
+        <a href="#"><i class="ri-twitter-fill"></i></a>
+      </div>
+    </div>
+  </header>
+  <br><br><br><br>
+  <section class="about">
+    <div class="section__container about__container">
+      <!-- Left side: Explore Italy & Paris -->
+      <div class="about__image about__image-1" id="about">
+        <img src="/assets/italy1.png" alt="destination" />
+      </div>
+      <div class="about__content about__content-1">
+        <h3 class="section__subheader">EXPLORE ITALY & PARIS</h3>
+        <h2 class="section__header">Unveil the Charm of Italy and the Romance of Paris</h2>
+        <p style="color: #e4eae9de;">
+          Italy and Paris are two of the most iconic travel destinations in the world. Italy is renowned for its rich
+          history, art, and cuisine, while Paris, the "City of Love," offers unmatched beauty, culture, and a sense of
+          magic in every corner. Whether you’re strolling through the cobbled streets of Rome or enjoying a croissant by
+          the Eiffel Tower, these destinations promise an unforgettable experience.
+        </p>
+        <ul>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Fun Fact (Italy):</strong></span> Italy
+            has more UNESCO World Heritage Sites than any other country in the world, including landmarks like the
+            Colosseum in Rome, the historic center of Florence, and the ancient city of Pompeii.</li>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Historical Remark
+                (Paris):</strong></span> The Eiffel Tower, which was initially met with criticism, was built as the
+            centerpiece for the 1889 World's Fair. Today, it stands as a symbol of Parisian elegance and is one of the
+            most recognizable landmarks globally.</li>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Cultural Insight
+                (Italy):</strong></span> Italy is famous for its culinary traditions, and no trip would be complete
+            without trying authentic Italian pizza and pasta. In fact, Naples is home to the birthplace of pizza, where
+            it was first created in the 18th century!</li>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Cultural Insight
+                (Paris):</strong></span> In Paris, locals have a tradition of sipping coffee at cafés along the
+            sidewalks. It’s a perfect way to immerse yourself in the Parisian culture—people-watching while enjoying
+            your espresso.</li>
+        </ul>
+        <div class="about__btn">
+          <a href="#">
+            Explore More
+            <span><i class="ri-arrow-right-line"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right side: Travel Essentials -->
+      <div class="about__image about__image-2" id="equipment">
+        <img src="/assets/italy2.png" alt="travel gear" />
+      </div>
+      <div class="about__content about__content-2">
+        <h3 class="section__subheader">TRAVEL ESSENTIALS</h3>
+        <h2 class="section__header">Pack Smart for Your Italy & Paris Trip</h2>
+        <p style="color: #e4eae9de;">
+          Traveling to Italy and Paris means you’ll need to be prepared for both urban adventures and outdoor
+          excursions. From comfortable walking shoes for city tours to stylish outfits for a night out in Paris, we’ve
+          got you covered with the must-have travel gear.
+        </p>
+        <ul>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Cultural Tip (Italy):</strong></span> In
+            Italy, it’s customary to dress modestly when visiting churches and religious sites, such as the Vatican or
+            St. Mark’s Basilica in Venice.</li>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Fun Fact (Paris):</strong></span> The
+            Louvre Museum in Paris, home to the famous Mona Lisa, was once a royal palace. Today, it's the world's
+            largest art museum, attracting millions of visitors each year.</li>
+          <li style="color: #e4eae9de;"><span style="color: #1efce6de;"><strong>Historical Remark
+                (Italy):</strong></span> The Leaning Tower of Pisa, one of Italy’s most iconic landmarks, began leaning
+            during its construction in the 12th century due to unstable foundation soil. It’s now one of the most
+            photographed buildings in the world!</li>
+        </ul>
+        <section id="pack-smart">
+          <div class="weather">
+            <h2>Weather at Your Destination</h2>
+            <p id="weather-info">Loading weather information...</p>
+          </div>
+        </section>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            const weatherInfo = document.getElementById('weather-info');
+            const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeatherMap API Key
+            const city = 'London'; // You can dynamically set this based on user input
+
+            // URL for OpenWeatherMap API
+            const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            // Fetch weather data
+            fetch(weatherUrl)
+              .then(response => response.json())
+              .then(data => {
+                if (data.cod === 200) {
+                  const temp = data.main.temp;
+                  const description = data.weather[0].description;
+                  const humidity = data.main.humidity;
+                  const weatherDetails = `
+                      Temperature: ${temp}°C<br>
+                      Condition: ${description.charAt(0).toUpperCase() + description.slice(1)}<br>
+                      Humidity: ${humidity}%<br>
+                    `;
+                  weatherInfo.innerHTML = weatherDetails;
+                } else {
+                  weatherInfo.innerHTML = 'Weather information not available.';
+                }
+              })
+              .catch(error => {
+                console.error('Error fetching weather data:', error);
+                weatherInfo.innerHTML = 'Failed to retrieve weather information.';
+              });
+          });
+        </script>
+
+        <div class="about__btn">
+          <a href="#">
+            Learn More
+            <span><i class="ri-arrow-right-line"></i></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="footer">
+    <div class="section__container footer__container">
+      <div class="footer__col">
+        <div class="logo footer__logo">
+          <a href="#">MNTN</a>
+        </div>
+        <p>
+          Your journey begins here! Explore new places and experiences with
+          us.
+        </p>
+      </div>
+
+      <div class="footer__col">
+        <h4>Explore the Blog</h4>
+        <ul class="footer__links">
+          <li><a href="#">About MNTN</a></li>
+          <li><a href="#">Contributors & Writers</a></li>
+          <li><a href="#">Write for Us</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>About MNTN</h4>
+        <ul class="footer__links">
+          <li><a href="#">The Team</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bar">
+      Copyright © 2024 Web Design Mastery. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const weatherElements = document.querySelectorAll('.weather');
+
+      weatherElements.forEach((element) => {
+        const cityName = element.getAttribute('data-city');
+        const apiKey = 'b7b0d31adedc56c07e5767ecd3406dbb'; // Replace with your OpenWeatherMap API Key
+
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`;
+
+        fetch(weatherUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.cod === 200) {
+              const temp = data.main.temp;
+              const condition = data.weather[0].description;
+              const humidity = data.main.humidity;
+
+              const weatherDetails = `
+            <p><strong>Temperature:</strong> ${temp}°C</p>
+            <p><strong>Condition:</strong> ${condition.charAt(0).toUpperCase() + condition.slice(1)}</p>
+            <p><strong>Humidity:</strong> ${humidity}%</p>
+          `;
+              element.innerHTML += weatherDetails;
+            } else {
+              element.innerHTML += `<p>Weather information not available for ${cityName}.</p>`;
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching weather data:', error);
+            element.innerHTML += `<p>Failed to retrieve weather information.</p>`;
+          });
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+{
+  "header": {
+    "logo": {
+      "text": "City Explorer",
+      "link": "#"
+    },
+    "nav_links": [
+      { "text": "Destinations", "link": "#about" },
+      { "text": "Travel Essentials", "link": "#equipment" },
+      { "text": "Travel Blog", "link": "#blog" },
+      { "text": "Contact Us", "link": "#contact" }
+    ],
+    "socials": [
+      { "platform": "Instagram", "icon": "ri-instagram-line", "link": "#" },
+      { "platform": "Twitter", "icon": "ri-twitter-fill", "link": "#" }
+    ]
+  },
+  "main_section": {
+    "subheader": "YOUR ADVENTURE AWAITS",
+    "header": "Italy, Paris",
+    "scroll_button": {
+      "text": "Scroll down",
+      "icon": "ri-arrow-down-line",
+      "link": "#about"
+    }
+  },
+  "dynamic_info": {
+    "countries": [
+      {
+        "name": "Italy",
+        "cities": [
+          {
+            "name": "Rome",
+            "image": "https://via.placeholder.com/300?text=Rome",
+            "description": "Known for its ancient monuments and the Vatican.",
+            "weather": {
+              "temperature": "20°C",
+              "humidity": "65%",
+              "wind_speed": "10 km/h"
+            }
+          },
+          {
+            "name": "Florence",
+            "image": "https://via.placeholder.com/300?text=Florence",
+            "description": "Famous for its art, museums, and architectural landmarks.",
+            "weather": {
+              "temperature": "18°C",
+              "humidity": "70%",
+              "wind_speed": "5 km/h"
+            }
+          }
+        ]
+      },
+      {
+        "name": "France",
+        "cities": [
+          {
+            "name": "Paris",
+            "image": "https://via.placeholder.com/300?text=Paris",
+            "description": "Known as the 'City of Light', famous for its culture and history.",
+            "weather": {
+              "temperature": "15°C",
+              "humidity": "80%",
+              "wind_speed": "12 km/h"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "selectors": {
+    "country": {
+      "label": "Select a Country",
+      "options": [
+        { "value": "Italy", "text": "Italy" },
+        { "value": "France", "text": "France" }
+      ]
+    },
+    "city": {
+      "label": "Select a City",
+      "options": [
+        { "value": "Rome", "text": "Rome" },
+        { "value": "Florence", "text": "Florence" },
+        { "value": "Paris", "text": "Paris" }
+      ]
+    }
+  },
+  "weather_info": {
+    "label": "Weather Information",
+    "loading_text": "Loading weather information...",
+    "fields": {
+      "temperature": "Temperature",
+      "humidity": "Humidity",
+      "wind_speed": "Wind Speed"
+    }
+  }
+}

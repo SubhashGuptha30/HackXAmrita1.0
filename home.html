@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Resources for amCharts -->
+  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      background-color: rgb(36, 31, 31);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Header Styles */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background-color: black;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: lightgray;
+    }
+
+    /* Globe Container Styles */
+    .globe-container {
+      position: relative;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgb(36, 31, 31));
+      padding-top: 50px;
+    }
+
+    #chartdiv {
+      width: 80%;
+      height: 100%;
+    }
+
+    /* Iframe Section Styles */
+    .iframe-container {
+      width: 100%;
+      height: 500px;
+      background-color: black;
+      position: relative;
+      z-index: 1;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Parallax Effect */
+    .globe-container {
+      transform: translateY(0px);
+      transition: transform 0.3s ease-out;
+    }
+
+    /* Footer Styles */
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: black;
+      color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <img src="your-logo.png" alt="Logo">
+    <nav>
+      <ul>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Globe Container Section -->
+  <div class="globe-container">
+    <div id="chartdiv"></div>
+  </div>
+
+  <!-- Iframe Section -->
+  <div class="iframe-container">
+    <iframe src="scrap.html"></iframe>
+  </div>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>&copy; 2023 My Travel Website | <a href="#">Privacy Policy</a></p>
+  </footer>
+
+  <!-- Globe Animation Script -->
+  <script>
+    am5.ready(function () {
+      // Create root element
+      var root = am5.Root.new("chartdiv");
+
+      // Set themes
+      root.setThemes([am5themes_Animated.new(root)]);
+
+      // Create the map chart
+      var chart = root.container.children.push(am5map.MapChart.new(root, {
+        panX: "rotateX",
+        panY: "rotateY",
+        projection: am5map.geoOrthographic(),
+        paddingBottom: 20,
+        paddingTop: 20,
+        paddingLeft: 20,
+        paddingRight: 20
+      }));
+
+      // Create main polygon series for countries
+      var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+        geoJSON: am5geodata_worldLow
+      }));
+
+      polygonSeries.mapPolygons.template.setAll({
+        tooltipText: "{name}",
+        toggleKey: "active",
+        interactive: true
+      });
+
+      polygonSeries.mapPolygons.template.states.create("hover", {
+        fill: root.interfaceColors.get("primaryButtonHover")
+      });
+
+      // Create series for background fill
+      var backgroundSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {}));
+      backgroundSeries.mapPolygons.template.setAll({
+        fill: root.interfaceColors.get("alternativeBackground"),
+        fillOpacity: 0.1,
+        strokeOpacity: 0
+      });
+
+      backgroundSeries.data.push({
+        geometry: am5map.getGeoRectangle(90, 180, -90, -180)
+      });
+
+      // Create graticule series
+      var graticuleSeries = chart.series.push(am5map.GraticuleSeries.new(root, {}));
+      graticuleSeries.mapLines.template.setAll({
+        strokeOpacity: 0.1,
+        stroke: root.interfaceColors.get("alternativeBackground")
+      });
+
+      // Rotate animation
+      chart.animate({
+        key: "rotationX",
+        from: 0,
+        to: 360,
+        duration: 30000,
+        loops: Infinity
+      });
+
+      // Globe move up on scroll
+      window.addEventListener('scroll', () => {
+        const globeContainer = document.querySelector('.globe-container');
+        const scrollPosition = window.scrollY;
+        globeContainer.style.transform = `translateY(${-scrollPosition / 5}px)`;
+      });
+
+      // Animate map on load
+      chart.appear(1000, 100);
+    });
+  </script>
+
+</body>
+
+</html>
